@@ -40,77 +40,110 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="container flex items-center justify-center min-h-[calc(100vh-200px)]">
-      <div className="w-full max-w-md rounded-lg border bg-card p-8 shadow-sm">
-        <h1 className="mb-6 text-center">会員登録</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="name" className="text-sm font-medium block mb-2">
-              お名前
-            </label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="text-sm font-medium block mb-2">
-              メールアドレス
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="text-sm font-medium block mb-2">
-              パスワード（8文字以上）
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              required
-              minLength={8}
-            />
-          </div>
-          <div>
-            <label htmlFor="companyName" className="text-sm font-medium block mb-2">
-              会社名
-            </label>
-            <input
-              id="companyName"
-              type="text"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              required
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
-          >
-            {isLoading ? '登録中...' : '登録する'}
-          </button>
-        </form>
-        <div className="mt-4 text-center text-sm">
-          すでにアカウントをお持ちの方は
-          <Link href="/auth/signin" className="text-primary hover:underline ml-1">
-            ログイン
+    <div className="min-h-screen flex items-center justify-center py-16 px-4">
+      <div className="w-full max-w-lg">
+        <div className="text-center mb-10">
+          <Link href="/" className="inline-block mb-8">
+            <h2 className="text-3xl font-bold">B_Hall</h2>
           </Link>
+          <h1 className="text-3xl font-bold mb-3">アカウント作成</h1>
+          <p className="text-muted-foreground">無料でB_Hallを始めましょう</p>
+        </div>
+
+        <div className="card-premium p-10">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="text-sm font-semibold block mb-3">
+                  お名前
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="input-premium"
+                  placeholder="山田 太郎"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="companyName" className="text-sm font-semibold block mb-3">
+                  会社名
+                </label>
+                <input
+                  id="companyName"
+                  type="text"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  className="input-premium"
+                  placeholder="株式会社〇〇"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="email" className="text-sm font-semibold block mb-3">
+                メールアドレス
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-premium"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="text-sm font-semibold block mb-3">
+                パスワード
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-premium"
+                placeholder="8文字以上"
+                required
+                minLength={8}
+              />
+              <p className="text-xs text-muted-foreground mt-2">8文字以上で設定してください</p>
+            </div>
+
+            {error && (
+              <div className="rounded-xl bg-destructive/10 border border-destructive/20 p-4">
+                <p className="text-sm text-destructive font-medium">{error}</p>
+              </div>
+            )}
+
+            <button type="submit" disabled={isLoading} className="w-full btn-primary">
+              {isLoading ? '登録中...' : '無料で始める'}
+            </button>
+          </form>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-muted-foreground">
+              すでにアカウントをお持ちの方は
+              <Link
+                href="/auth/signin"
+                className="text-accent font-semibold hover:underline ml-1 transition-smooth"
+              >
+                ログイン
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <p className="text-xs text-muted-foreground">
+            登録することで、利用規約とプライバシーポリシーに同意したものとみなされます
+          </p>
         </div>
       </div>
     </div>

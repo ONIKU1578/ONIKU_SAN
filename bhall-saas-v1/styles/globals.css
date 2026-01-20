@@ -4,26 +4,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Premium color palette - Sophisticated navy/slate with elegant accents */
+    --background: 0 0% 99%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 222 47% 25%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
+
+    /* Premium shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
   }
 }
 
@@ -31,32 +38,103 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: -0.011em;
+  }
+
+  /* Enhanced typography with better hierarchy */
+  h1 {
+    @apply text-5xl font-bold tracking-tight;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-4xl font-bold tracking-tight;
+    letter-spacing: -0.019em;
+    line-height: 1.2;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold tracking-tight;
+    letter-spacing: -0.014em;
+    line-height: 1.3;
+  }
+
+  h4 {
+    @apply text-xl font-semibold tracking-tight;
+    letter-spacing: -0.011em;
+    line-height: 1.4;
+  }
+
+  p {
+    @apply leading-relaxed;
+    letter-spacing: -0.008em;
   }
 }
 
-h1 {
-  @apply text-4xl font-bold tracking-tight;
-}
+@layer utilities {
+  .container {
+    @apply mx-auto px-6 sm:px-8 lg:px-12 max-w-7xl;
+  }
 
-h2 {
-  @apply text-3xl font-semibold tracking-tight;
-}
+  /* Premium card styles */
+  .card-premium {
+    @apply rounded-2xl border border-border/50 bg-card backdrop-blur-sm;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-h3 {
-  @apply text-2xl font-semibold tracking-tight;
-}
+  .card-premium:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+  }
 
-h4 {
-  @apply text-xl font-semibold tracking-tight;
-}
+  /* Premium button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl px-8 py-3 text-sm font-semibold;
+    @apply bg-primary text-primary-foreground shadow-md;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-primary/90 hover:shadow-lg hover:scale-[1.02];
+    @apply active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
 
-p {
-  @apply leading-7;
-}
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl px-8 py-3 text-sm font-semibold;
+    @apply border-2 border-border bg-card text-foreground;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:border-primary/30 hover:bg-muted hover:scale-[1.02];
+    @apply active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
 
-.container {
-  @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  /* Premium input styles */
+  .input-premium {
+    @apply flex h-12 w-full rounded-xl border-2 border-input bg-card px-4 py-3;
+    @apply text-sm transition-all duration-200;
+    @apply focus:border-accent focus:ring-4 focus:ring-accent/10 focus:outline-none;
+    @apply placeholder:text-muted-foreground/50;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Glass effect */
+  .glass-effect {
+    @apply backdrop-blur-md bg-card/80;
+  }
+
+  /* Section spacing following 8px grid */
+  .section-spacing {
+    @apply py-24 md:py-32;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
 }

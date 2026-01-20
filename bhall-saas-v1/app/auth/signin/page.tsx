@@ -38,50 +38,76 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="container flex items-center justify-center min-h-[calc(100vh-200px)]">
-      <div className="w-full max-w-md rounded-lg border bg-card p-8 shadow-sm">
-        <h1 className="mb-6 text-center">ログイン</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="text-sm font-medium block mb-2">
-              メールアドレス
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="text-sm font-medium block mb-2">
-              パスワード
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              required
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
-          >
-            {isLoading ? 'ログイン中...' : 'ログイン'}
-          </button>
-        </form>
-        <div className="mt-4 text-center text-sm">
-          アカウントをお持ちでない方は
-          <Link href="/auth/signup" className="text-primary hover:underline ml-1">
-            会員登録
+    <div className="min-h-screen flex items-center justify-center py-16 px-4">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-10">
+          <Link href="/" className="inline-block mb-8">
+            <h2 className="text-3xl font-bold">B_Hall</h2>
           </Link>
+          <h1 className="text-3xl font-bold mb-3">おかえりなさい</h1>
+          <p className="text-muted-foreground">アカウントにログインしてください</p>
+        </div>
+
+        <div className="card-premium p-10">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="email" className="text-sm font-semibold block mb-3">
+                メールアドレス
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-premium"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="text-sm font-semibold block mb-3">
+                パスワード
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-premium"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            {error && (
+              <div className="rounded-xl bg-destructive/10 border border-destructive/20 p-4">
+                <p className="text-sm text-destructive font-medium">{error}</p>
+              </div>
+            )}
+
+            <button type="submit" disabled={isLoading} className="w-full btn-primary">
+              {isLoading ? 'ログイン中...' : 'ログイン'}
+            </button>
+          </form>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-muted-foreground">
+              アカウントをお持ちでない方は
+              <Link
+                href="/auth/signup"
+                className="text-accent font-semibold hover:underline ml-1 transition-smooth"
+              >
+                会員登録
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <p className="text-xs text-muted-foreground">
+            テストアカウント: owner@example.com / password123
+          </p>
         </div>
       </div>
     </div>
