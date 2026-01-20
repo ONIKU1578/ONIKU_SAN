@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
   }
 
   // 運営・管理者は全チケット、顧客は自社チケットのみ
-  let tickets;
+  let tickets: any[] = [];
   if (isBacklly(user) || isAdmin(user)) {
     tickets = db.getAllTickets();
   } else if (user.companyId) {

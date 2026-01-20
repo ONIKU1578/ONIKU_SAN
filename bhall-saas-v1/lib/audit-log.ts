@@ -12,5 +12,8 @@ export function logActivity(params: {
   page?: string;
   details?: Record<string, any>;
 }): void {
-  db.createActivityLog(params);
+  db.createActivityLog({
+    ...params,
+    details: params.details || {},
+  });
 }

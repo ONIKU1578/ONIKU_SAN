@@ -1,8 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'B_Hall - 外部管理部サービス',
@@ -16,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body>
         <div className="flex min-h-screen flex-col">
           <main className="flex-1">{children}</main>
           <footer className="border-t bg-background py-6">
